@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Railways.Data;
+using Railways.Entities;
 
 namespace Railways.Web.Controllers
 {
@@ -19,14 +20,14 @@ namespace Railways.Web.Controllers
             railwayContext = context;
         }
 
-        [Route("/")]
-        public IEnumerable<string> GetRuns()
+        [Route("runs")]
+        public IEnumerable<Run> GetRuns()
         {
-            railwayContext.Runs.Add(new Entities.Run { RunTime = DateTime.UtcNow });
-            railwayContext.Runs.Add(new Entities.Run { RunTime = DateTime.UtcNow });
-            railwayContext.SaveChanges();
-            var runs = railwayContext.Runs.Select(x => x.Id.ToString());
-            return runs;
+            using (railwayContext)
+            {
+                var runs = railwayContext.Runs.Include(x=>x.Route).ToList();
+                return runs;
+            }
         }
     }
 }

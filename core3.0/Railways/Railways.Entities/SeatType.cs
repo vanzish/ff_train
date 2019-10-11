@@ -1,4 +1,6 @@
-﻿namespace Railways.Entities
+﻿using System.Collections.Generic;
+
+namespace Railways.Entities
 {
     public class SeatType
     {
@@ -8,6 +10,6 @@
 
         public bool IsOutboard { get; set; }
 
-        public Seat Seat { get; set; }
+        public ICollection<Seat> Seats { get; set; }
     }
 }

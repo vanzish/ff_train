@@ -14,7 +14,7 @@ namespace Railways.Entities
 
         public string Name { get; set; }
 
-        public DateTimeOffset TimeZone { get; set; }
+        public TimeSpan CityTimeZone { get; set; }
 
         public ICollection<Station> Stations { get; set; }
     }

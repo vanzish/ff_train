@@ -29,6 +29,8 @@ namespace Railways.Data
                 entity.HasOne<RoutePoint>(x => x.ArrivalRoutePoint).WithMany(x => x.ArrivalTickets).HasForeignKey(x => x.ArrivalRoutePointId);
                 entity.HasOne<RoutePoint>(x => x.DepartureRoutePoint).WithMany(x => x.DepartureTickets).HasForeignKey(x => x.DepartureRoutePointId);
             });
+
+            modelBuilder.Seed();
         }
     }
 }
