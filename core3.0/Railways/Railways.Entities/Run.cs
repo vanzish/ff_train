@@ -11,5 +11,9 @@ namespace Railways.Entities
         public int RouteId { get; set; }
 
         public Route Route { get; set; }
+
+        public int TrainId { get; set; }
+
+        public Train Train { get; set; }
     }
 }

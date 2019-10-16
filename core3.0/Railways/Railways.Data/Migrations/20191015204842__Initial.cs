@@ -83,26 +83,6 @@ namespace Railways.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Runs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    RunTime = table.Column<DateTime>(nullable: false),
-                    RouteId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Runs", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Runs_Routes_RouteId",
-                        column: x => x.RouteId,
-                        principalTable: "Routes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Carriages",
                 columns: table => new
                 {
@@ -116,6 +96,33 @@ namespace Railways.Data.Migrations
                     table.PrimaryKey("PK_Carriages", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Carriages_Trains_TrainId",
+                        column: x => x.TrainId,
+                        principalTable: "Trains",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Runs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RunTime = table.Column<DateTime>(nullable: false),
+                    RouteId = table.Column<int>(nullable: false),
+                    TrainId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Runs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Runs_Routes_RouteId",
+                        column: x => x.RouteId,
+                        principalTable: "Routes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Runs_Trains_TrainId",
                         column: x => x.TrainId,
                         principalTable: "Trains",
                         principalColumn: "Id",
@@ -269,14 +276,14 @@ namespace Railways.Data.Migrations
                 columns: new[] { "Id", "Number", "TrainId" },
                 values: new object[,]
                 {
-                    { 2, 3, 1 },
-                    { 1, 2, 1 }
+                    { 1, 2, 1 },
+                    { 2, 3, 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Runs",
-                columns: new[] { "Id", "RouteId", "RunTime" },
-                values: new object[] { 1, 1, new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "RouteId", "RunTime", "TrainId" },
+                values: new object[] { 1, 1, new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified), 1 });
 
             migrationBuilder.InsertData(
                 table: "Stations",
@@ -345,6 +352,16 @@ namespace Railways.Data.Migrations
                     { 16, 2, 8, 4 }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Tickets",
+                columns: new[] { "Id", "ArrivalDateTime", "ArrivalRoutePointId", "DepartureDateTime", "DepartureRoutePointId", "HasLinen", "Number", "RunId", "SeatId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2019, 10, 30, 23, 3, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified), 15, true, new Guid("00000000-0000-0000-0000-000000000000"), 1, 1 },
+                    { 2, new DateTime(2019, 10, 30, 23, 3, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified), 15, true, new Guid("00000000-0000-0000-0000-000000000000"), 1, 2 },
+                    { 3, new DateTime(2019, 10, 30, 23, 3, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified), 15, true, new Guid("00000000-0000-0000-0000-000000000000"), 1, 3 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Carriages_TrainId",
                 table: "Carriages",
@@ -365,6 +382,12 @@ namespace Railways.Data.Migrations
                 name: "IX_Runs_RouteId",
                 table: "Runs",
                 column: "RouteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Runs_TrainId",
+                table: "Runs",
+                column: "TrainId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Seats_CarriageId",

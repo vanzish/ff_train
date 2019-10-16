@@ -8,7 +8,6 @@ namespace Railways.Data
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-
             #region Cities
 
             modelBuilder.Entity<City>().HasData(
@@ -57,36 +56,131 @@ namespace Railways.Data
             #region RoutePoints
 
             modelBuilder.Entity<RoutePoint>().HasData(
-                new RoutePoint { Id = 1, RouteId = 1, StationId = 1, ArrivalOffset = TimeSpan.Zero, DepartureOffset = TimeSpan.Zero },
+                new RoutePoint
+                    { Id = 1, RouteId = 1, StationId = 1, ArrivalOffset = TimeSpan.Zero, DepartureOffset = TimeSpan.Zero },
                 // time in run 5 ч 57 м, wait time 52 м
-                new RoutePoint { Id = 2, RouteId = 1, StationId = 2, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerHour * 5 + TimeSpan.TicksPerMinute * 57), DepartureOffset = new TimeSpan(TimeSpan.TicksPerHour * 5 + TimeSpan.TicksPerMinute * (57 + 52)) },
+                new RoutePoint
+                {
+                    Id = 2, RouteId = 1, StationId = 2,
+                    ArrivalOffset = new TimeSpan(TimeSpan.TicksPerHour * 5 + TimeSpan.TicksPerMinute * 57),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerHour * 5 + TimeSpan.TicksPerMinute * (57 + 52))
+                },
                 // time in run 17 ч 37 м, wait time 20 м
-                new RoutePoint { Id = 3, RouteId = 1, StationId = 3, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerHour * 17 + TimeSpan.TicksPerMinute * 37), DepartureOffset = new TimeSpan(TimeSpan.TicksPerHour * 17 + TimeSpan.TicksPerMinute * (37 + 20)) },
+                new RoutePoint
+                {
+                    Id = 3, RouteId = 1, StationId = 3,
+                    ArrivalOffset = new TimeSpan(TimeSpan.TicksPerHour * 17 + TimeSpan.TicksPerMinute * 37),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerHour * 17 + TimeSpan.TicksPerMinute * (37 + 20))
+                },
                 // time in run 1 д 2 ч 45 м, wait time 20 м
-                new RoutePoint { Id = 4, RouteId = 1, StationId = 4, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 2 + TimeSpan.TicksPerMinute * 45), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 2 + TimeSpan.TicksPerMinute * (45 + 20)) },
+                new RoutePoint
+                {
+                    Id = 4, RouteId = 1, StationId = 4,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 2 + TimeSpan.TicksPerMinute * 45),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 2 +
+                                                   TimeSpan.TicksPerMinute * (45 + 20))
+                },
                 // time in run 1 д 8 ч 41 м, wait time 54 м
-                new RoutePoint { Id = 5, RouteId = 1, StationId = 5, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 8 + TimeSpan.TicksPerMinute * 41), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 8 + TimeSpan.TicksPerMinute * (41 + 54)) },
+                new RoutePoint
+                {
+                    Id = 5, RouteId = 1, StationId = 5,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 8 + TimeSpan.TicksPerMinute * 41),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 8 +
+                                                   TimeSpan.TicksPerMinute * (41 + 54))
+                },
                 // time in run 	1 д 14 ч 32 м, wait time 20 м
-                new RoutePoint { Id = 6, RouteId = 1, StationId = 6, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 14 + TimeSpan.TicksPerMinute * 32), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 14 + TimeSpan.TicksPerMinute * (32 + 20)) },
+                new RoutePoint
+                {
+                    Id = 6, RouteId = 1, StationId = 6,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 14 + TimeSpan.TicksPerMinute * 32),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 14 +
+                                                   TimeSpan.TicksPerMinute * (32 + 20))
+                },
                 // time in run 1 д 22 ч 41 м, wait time 16 м
-                new RoutePoint { Id = 7, RouteId = 1, StationId = 7, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 22 + TimeSpan.TicksPerMinute * 41), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 22 + TimeSpan.TicksPerMinute * (41 + 16)) },
+                new RoutePoint
+                {
+                    Id = 7, RouteId = 1, StationId = 7,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 22 + TimeSpan.TicksPerMinute * 41),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 1 + TimeSpan.TicksPerHour * 22 +
+                                                   TimeSpan.TicksPerMinute * (41 + 16))
+                },
                 // time in run 2 д 7 ч 11 м, wait time 56 м
-                new RoutePoint { Id = 8, RouteId = 1, StationId = 8, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 2 + TimeSpan.TicksPerHour * 7 + TimeSpan.TicksPerMinute * 11), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 2 + TimeSpan.TicksPerHour * 7 + TimeSpan.TicksPerMinute * (11 + 56)) },
+                new RoutePoint
+                {
+                    Id = 8, RouteId = 1, StationId = 8,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 2 + TimeSpan.TicksPerHour * 7 + TimeSpan.TicksPerMinute * 11),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 2 + TimeSpan.TicksPerHour * 7 +
+                                                   TimeSpan.TicksPerMinute * (11 + 56))
+                },
                 // time in run 	2 д 19 ч 46 м, wait time 35 м
-                new RoutePoint { Id = 9, RouteId = 1, StationId = 9, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 2 + TimeSpan.TicksPerHour * 19 + TimeSpan.TicksPerMinute * 46), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 2 + TimeSpan.TicksPerHour * 19 + TimeSpan.TicksPerMinute * (46 + 35)) },
+                new RoutePoint
+                {
+                    Id = 9, RouteId = 1, StationId = 9,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 2 + TimeSpan.TicksPerHour * 19 + TimeSpan.TicksPerMinute * 46),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 2 + TimeSpan.TicksPerHour * 19 +
+                                                   TimeSpan.TicksPerMinute * (46 + 35))
+                },
                 // time in run 	3 д 14 ч 56 м, wait time 35 м
-                new RoutePoint { Id = 10, RouteId = 1, StationId = 10, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 3 + TimeSpan.TicksPerHour * 14 + TimeSpan.TicksPerMinute * 56), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 3 + TimeSpan.TicksPerHour * 14 + TimeSpan.TicksPerMinute * (56 + 35)) },
+                new RoutePoint
+                {
+                    Id = 10, RouteId = 1, StationId = 10,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 3 + TimeSpan.TicksPerHour * 14 + TimeSpan.TicksPerMinute * 56),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 3 + TimeSpan.TicksPerHour * 14 +
+                                                   TimeSpan.TicksPerMinute * (56 + 35))
+                },
                 // time in run 	3 д 23 ч 11 м, wait time 30 м
-                new RoutePoint { Id = 11, RouteId = 1, StationId = 11, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 3 + TimeSpan.TicksPerHour * 23 + TimeSpan.TicksPerMinute * 11), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 3 + TimeSpan.TicksPerHour * 23 + TimeSpan.TicksPerMinute * (11 + 30)) },
+                new RoutePoint
+                {
+                    Id = 11, RouteId = 1, StationId = 11,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 3 + TimeSpan.TicksPerHour * 23 + TimeSpan.TicksPerMinute * 11),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 3 + TimeSpan.TicksPerHour * 23 +
+                                                   TimeSpan.TicksPerMinute * (11 + 30))
+                },
                 // time in run 	4 д 10 ч 18 м, wait time 36 м
-                new RoutePoint { Id = 12, RouteId = 1, StationId = 12, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 4 + TimeSpan.TicksPerHour * 10 + TimeSpan.TicksPerMinute * 18), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 4 + TimeSpan.TicksPerHour * 10 + TimeSpan.TicksPerMinute * (18 + 36)) },
+                new RoutePoint
+                {
+                    Id = 12, RouteId = 1, StationId = 12,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 4 + TimeSpan.TicksPerHour * 10 + TimeSpan.TicksPerMinute * 18),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 4 + TimeSpan.TicksPerHour * 10 +
+                                                   TimeSpan.TicksPerMinute * (18 + 36))
+                },
                 // time in run 	6 д 7 ч 45 м, wait time 1 ч 10 м
-                new RoutePoint { Id = 13, RouteId = 1, StationId = 13, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 7 + TimeSpan.TicksPerMinute * 45), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * (7 + 1) + TimeSpan.TicksPerMinute * (45 + 10)) },
+                new RoutePoint
+                {
+                    Id = 13, RouteId = 1, StationId = 13,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 7 + TimeSpan.TicksPerMinute * 45),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * (7 + 1) +
+                                                   TimeSpan.TicksPerMinute * (45 + 10))
+                },
                 // time in run 	6 д 20 ч 8 м, wait time 19 м
-                new RoutePoint { Id = 14, RouteId = 1, StationId = 14, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 20 + TimeSpan.TicksPerMinute * 8), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * (20) + TimeSpan.TicksPerMinute * (8 + 19)) },
+                new RoutePoint
+                {
+                    Id = 14, RouteId = 1, StationId = 14,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 20 + TimeSpan.TicksPerMinute * 8),
+                    DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * (20) +
+                                                   TimeSpan.TicksPerMinute * (8 + 19))
+                },
                 // time in run 	6 д 22 ч 28 м, wait time 19 м
-                new RoutePoint { Id = 15, RouteId = 1, StationId = 15, ArrivalOffset = new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 22 + TimeSpan.TicksPerMinute * 28), DepartureOffset = new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * (22) + TimeSpan.TicksPerMinute * (28)) }
-                );
+                new RoutePoint
+                {
+                    Id = 15, RouteId = 1, StationId = 15,
+                    ArrivalOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 22 + TimeSpan.TicksPerMinute * 28),
+                    DepartureOffset =
+                        new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * (22) + TimeSpan.TicksPerMinute * (28))
+                }
+            );
 
             #endregion
 
@@ -119,7 +213,7 @@ namespace Railways.Data
                 new Seat { Id = 14, SeatTypeId = 2, CarriageId = 2, Number = 6 },
                 new Seat { Id = 15, SeatTypeId = 3, CarriageId = 2, Number = 7 },
                 new Seat { Id = 16, SeatTypeId = 4, CarriageId = 2, Number = 8 }
-                );
+            );
 
             #endregion
 
@@ -128,8 +222,7 @@ namespace Railways.Data
             modelBuilder.Entity<Carriage>().HasData(
                 new Carriage { Id = 1, Number = 2, TrainId = 1 },
                 new Carriage { Id = 2, Number = 3, TrainId = 1 }
-                );
-
+            );
 
             #endregion
 
@@ -137,12 +230,55 @@ namespace Railways.Data
 
             modelBuilder.Entity<Train>().HasData(
                 new Train { Id = 1, Number = "25AT" }
-                );
-
+            );
 
             #endregion
 
-            modelBuilder.Entity<Run>().HasData(new Run { Id=1, RouteId=1, RunTime = new DateTime(2019, 10, 24, 0, 35, 0)});
+            modelBuilder.Entity<Run>().HasData(new Run
+            {
+                Id = 1, TrainId = 1, RouteId = 1, RunTime = new DateTime(2019, 10, 24, 0, 35, 0)
+            });
+
+            modelBuilder.Entity<Ticket>().HasData(new Ticket
+                                                  {
+                                                      Id = 1,
+                                                      RunId = 1,
+                                                      ArrivalRoutePointId = 1,
+                                                      DepartureRoutePointId = 15,
+                                                      DepartureDateTime =
+                                                          new DateTime(2019, 10, 24, 0, 35, 0),
+                                                      ArrivalDateTime = new DateTime(2019, 10, 24, 0, 35, 0) +
+                                                                        new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 22 +
+                                                                                     TimeSpan.TicksPerMinute * 28),
+                                                      SeatId = 1, HasLinen = true
+                                                  },
+                                                  new Ticket
+                                                  {
+                                                      Id = 2,
+                                                      RunId = 1,
+                                                      ArrivalRoutePointId = 1,
+                                                      DepartureRoutePointId = 15,
+                                                      DepartureDateTime =
+                                                          new DateTime(2019, 10, 24, 0, 35, 0),
+                                                      ArrivalDateTime = new DateTime(2019, 10, 24, 0, 35, 0) +
+                                                                        new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 22 +
+                                                                                     TimeSpan.TicksPerMinute * 28),
+                                                      SeatId = 2,
+                                                      HasLinen = true
+                                                  }, new Ticket
+                                                  {
+                                                      Id = 3,
+                                                      RunId = 1,
+                                                      ArrivalRoutePointId = 1,
+                                                      DepartureRoutePointId = 15,
+                                                      DepartureDateTime =
+                                                          new DateTime(2019, 10, 24, 0, 35, 0),
+                                                      ArrivalDateTime = new DateTime(2019, 10, 24, 0, 35, 0) +
+                                                                        new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 22 +
+                                                                                     TimeSpan.TicksPerMinute * 28),
+                                                      SeatId = 3,
+                                                      HasLinen = true
+                                                  });
         }
     }
 }

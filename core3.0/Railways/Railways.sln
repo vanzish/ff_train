@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Railways.Web", "Railways.Web\Railways.Web.csproj", "{551F7E7D-C9D6-4264-9E1A-DE866ECCEE48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Railways.Web", "Railways.Web\Railways.Web.csproj", "{551F7E7D-C9D6-4264-9E1A-DE866ECCEE48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Railways.Data", "Railways.Data\Railways.Data.csproj", "{6BE3334F-2339-4274-9547-D043D6057C56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Railways.Data", "Railways.Data\Railways.Data.csproj", "{6BE3334F-2339-4274-9547-D043D6057C56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Railways.Entities", "Railways.Entities\Railways.Entities.csproj", "{E124CB17-77A6-42EB-892B-88C9560AC7A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Railways.Entities", "Railways.Entities\Railways.Entities.csproj", "{E124CB17-77A6-42EB-892B-88C9560AC7A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Railways.Business", "Railways.Business\Railways.Business.csproj", "{9DFA10F6-09FF-4163-B0DA-339820C773C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Railways.Tests", "Railways.Tests\Railways.Tests.csproj", "{0695E1D1-BCBB-4457-93D2-6BD10C0D15D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{E124CB17-77A6-42EB-892B-88C9560AC7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E124CB17-77A6-42EB-892B-88C9560AC7A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E124CB17-77A6-42EB-892B-88C9560AC7A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DFA10F6-09FF-4163-B0DA-339820C773C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DFA10F6-09FF-4163-B0DA-339820C773C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DFA10F6-09FF-4163-B0DA-339820C773C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DFA10F6-09FF-4163-B0DA-339820C773C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0695E1D1-BCBB-4457-93D2-6BD10C0D15D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0695E1D1-BCBB-4457-93D2-6BD10C0D15D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0695E1D1-BCBB-4457-93D2-6BD10C0D15D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0695E1D1-BCBB-4457-93D2-6BD10C0D15D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,6 +13,8 @@ namespace Railways.Entities
 
         public string Number { get; set; }
 
+        public Run Run { get; set; }
+
         public ICollection<Carriage> Carriages { get; set; }
     }
 }

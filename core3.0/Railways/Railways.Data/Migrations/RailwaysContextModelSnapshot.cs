@@ -349,9 +349,15 @@ namespace Railways.Data.Migrations
                     b.Property<DateTime>("RunTime")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<int>("TrainId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RouteId");
+
+                    b.HasIndex("TrainId")
+                        .IsUnique();
 
                     b.ToTable("Runs");
 
@@ -360,7 +366,8 @@ namespace Railways.Data.Migrations
                         {
                             Id = 1,
                             RouteId = 1,
-                            RunTime = new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified)
+                            RunTime = new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified),
+                            TrainId = 1
                         });
                 });
 
@@ -702,6 +709,44 @@ namespace Railways.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Tickets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ArrivalDateTime = new DateTime(2019, 10, 30, 23, 3, 0, 0, DateTimeKind.Unspecified),
+                            ArrivalRoutePointId = 1,
+                            DepartureDateTime = new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified),
+                            DepartureRoutePointId = 15,
+                            HasLinen = true,
+                            Number = new Guid("00000000-0000-0000-0000-000000000000"),
+                            RunId = 1,
+                            SeatId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ArrivalDateTime = new DateTime(2019, 10, 30, 23, 3, 0, 0, DateTimeKind.Unspecified),
+                            ArrivalRoutePointId = 1,
+                            DepartureDateTime = new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified),
+                            DepartureRoutePointId = 15,
+                            HasLinen = true,
+                            Number = new Guid("00000000-0000-0000-0000-000000000000"),
+                            RunId = 1,
+                            SeatId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ArrivalDateTime = new DateTime(2019, 10, 30, 23, 3, 0, 0, DateTimeKind.Unspecified),
+                            ArrivalRoutePointId = 1,
+                            DepartureDateTime = new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified),
+                            DepartureRoutePointId = 15,
+                            HasLinen = true,
+                            Number = new Guid("00000000-0000-0000-0000-000000000000"),
+                            RunId = 1,
+                            SeatId = 3
+                        });
                 });
 
             modelBuilder.Entity("Railways.Entities.Train", b =>
@@ -755,6 +800,12 @@ namespace Railways.Data.Migrations
                     b.HasOne("Railways.Entities.Route", "Route")
                         .WithMany("Runs")
                         .HasForeignKey("RouteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Railways.Entities.Train", "Train")
+                        .WithOne("Run")
+                        .HasForeignKey("Railways.Entities.Run", "TrainId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

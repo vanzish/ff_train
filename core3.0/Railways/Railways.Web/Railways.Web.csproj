@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Railways.Data\Railways.Data.csproj" />
+    <ProjectReference Include="..\Railways.Business\Railways.Business.csproj" />
   </ItemGroup>
 
 </Project>
