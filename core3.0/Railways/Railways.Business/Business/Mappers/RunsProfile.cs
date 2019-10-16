@@ -12,10 +12,12 @@ namespace Railways.Business.Business.Mappers
             CreateMap<Run, RunDto>();
             CreateMap<Carriage, CarriageDto>();
             CreateMap<Route, RouteDto>();
-            CreateMap<Seat, SeatDto>();
+            CreateMap<Seat, SeatDto>().ForMember(x => x.IsBusy, opt => opt.MapFrom<SeatBusyResolver>());
             CreateMap<SeatType, SeatTypeDto>();
             CreateMap<Train, TrainDto>();
             CreateMap<RunWithSeats, RunWithSeatsDto>();
+            CreateMap<Ticket, TicketDto>().ForMember(x => x.ArrivalRoutePoint, opt => opt.MapFrom<TicketArrivalCityResolver>())
+                                          .ForMember(x => x.DepartureRoutePoint, opt => opt.MapFrom<TicketDepartureCityResolver>());
         }
     }
 }

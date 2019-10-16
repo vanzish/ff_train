@@ -2,8 +2,8 @@
 
 namespace Railways.Entities.DTO.Results
 {
-    public class RunsResult
+    public class TicketsResult
     {
-        public IEnumerable<RunDto> Runs { get; set; }
+        public IEnumerable<TicketDto> Tickets { get; set; }
     }
 }

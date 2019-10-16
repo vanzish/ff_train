@@ -5,6 +5,7 @@ using Railways.Entities;
 using Railways.Entities.DTO.Options;
 using System.Net;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Railways.Business.Controllers
 {
@@ -12,10 +13,12 @@ namespace Railways.Business.Controllers
     public class SeatsController : BaseApiController
     {
         private readonly ISeatsService _seatsService;
+        private readonly IMapper _mapper;
 
-        public SeatsController(ISeatsService seatsService)
+        public SeatsController(ISeatsService seatsService, IMapper mapper)
         {
             _seatsService = seatsService;
+            _mapper = mapper;
         }
 
         [Route("seats")]
@@ -32,7 +35,7 @@ namespace Railways.Business.Controllers
                 return ErrorResult(HttpStatusCode.BadRequest, "Request parameters missing or have incorrect format");
             }
 
-            var handler = new SeatsHandler(_seatsService);
+            var handler = new SeatsHandler(_seatsService, _mapper);
             var result = await handler.Handle(seatsOptions);
 
             if (result.IsFailure)

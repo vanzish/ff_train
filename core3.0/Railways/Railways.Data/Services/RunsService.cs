@@ -1,5 +1,5 @@
 ﻿using Railways.Data.Interfaces;
-using Railways.Entities.DTO.Results.Runs;
+using Railways.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,7 +15,7 @@ namespace Railways.Data.Services
             _runsRepository = runsRepository;
         }
 
-        public async Task<IEnumerable<RunWithSeats>> GetAvailableRuns(
+        public async Task<IEnumerable<Run>> GetAvailableRuns(
             DateTime departureDate,
             int departureCityId,
             int destinationCityId)

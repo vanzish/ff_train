@@ -1,6 +1,5 @@
 ﻿using Railways.Data.Interfaces;
 using Railways.Entities;
-using Railways.Entities.DTO.Options;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,9 +14,9 @@ namespace Railways.Data.Services
             _seatsRepository = seatsRepository;
         }
 
-        public async Task<IEnumerable<Seat>> GetAvailableTrainSeats(SeatsOptions seatsOptions)
+        public async Task<IEnumerable<Run>> GetTrainSeats(int runId)
         {
-            return await _seatsRepository.GetAvailableTrainSeats(seatsOptions);
+            return await _seatsRepository.GetTrainSeats(runId);
         }
     }
 }

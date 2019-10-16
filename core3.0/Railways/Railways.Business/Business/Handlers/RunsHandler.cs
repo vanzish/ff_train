@@ -7,7 +7,6 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Railways.Entities.DTO.Results.Runs;
 
 namespace Railways.Business.Business.Handlers
 {
@@ -27,12 +26,13 @@ namespace Railways.Business.Business.Handlers
             try
             {
                 var runs = await _runsService.GetAvailableRuns(options.DepartureDate, options.DepartureCityId, options.DestinationCityId);
-                var result = new RunsResult { Runs = runs.Select(x => _mapper.Map<RunWithSeatsDto>(x)) };
+                var result = new RunsResult { Runs = runs.Select(x => _mapper.Map<RunDto>(x)) };
                 return Result.Ok(result);
             }
             catch (Exception ex)
             {
-                return Result.Fail<RunsResult>(HttpStatusCode.InternalServerError, "Something went wrong. Please repeat the operation.");
+                return Result.Fail<RunsResult>(HttpStatusCode.InternalServerError,
+                                               $"Something went wrong. Please repeat the operation. {ex.Message}");
             }
         }
     }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Railways.Entities;
 
 namespace Railways.Data.Repositories
 {
@@ -17,7 +18,7 @@ namespace Railways.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<RunWithSeats>> GetAvailableRuns(
+        public async Task<IEnumerable<Run>> GetAvailableRuns(
             DateTime departureDate,
             int departureCityId,
             int destinationCityId)
@@ -54,15 +55,10 @@ namespace Railways.Data.Repositories
                                   )
                             select seat;
 
-                var runList = await runs.Distinct().Include(x => x.Train)
+                var runList = await runs.Distinct().Include(x => x.Train).Include(x=>x.Route)
                                         .Where(x => seats.Select(s => s.Carriage.TrainId).Contains(x.TrainId)).ToListAsync();
-                var seatList = await seats.Distinct().Include(x => x.Carriage).ToListAsync();
-                var runsWithSeats = runList.GroupBy(x => x.TrainId).Select(gr => new
-                {
-                    Run = runList.First(x => x.Id == gr.Key), Seats = seatList.Where(x => x.Carriage.TrainId == gr.Key)
-                });
 
-                return runsWithSeats.Distinct().Select(x => new RunWithSeats { Run = x.Run, Seats = x.Seats });
+                return runList;
             }
         }
     }

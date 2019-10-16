@@ -1,11 +1,9 @@
-﻿using Railways.Data.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Railways.Data.Interfaces;
 using Railways.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Railways.Entities.DTO.Options;
 
 namespace Railways.Data.Repositories
 {
@@ -18,19 +16,14 @@ namespace Railways.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Seat>> GetAvailableTrainSeats(SeatsOptions seatsOptions)
+        public async Task<IEnumerable<Run>> GetTrainSeats(int runId)
         {
             await using (_context)
             {
-                var runsWithSeats = from run in _context.Runs
-                                    join train in _context.Trains on run.TrainId equals train.Id
-                                    join carriage in _context.Carriages on train.Id equals carriage.TrainId
-                                    join seat in _context.Seats on carriage.Id equals seat.CarriageId
-                                    join ticket in _context.Tickets on run.Id equals ticket.RunId
-                                    where seat.Ticket == null && run.Id == seatsOptions.RunId
-                                    select seat;
+                var runs = _context.Runs.Where(x => x.Id == runId);
 
-                return await runsWithSeats.Distinct().ToListAsync();
+                return await runs.Distinct().Include(x => x.Train).ThenInclude(x => x.Carriages).Include($"Train.Carriages.Seats.SeatType")
+                                 .Include($"Train.Carriages.Seats.Ticket").ToListAsync();
             }
         }
     }
