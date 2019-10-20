@@ -21,5 +21,7 @@ namespace Railways.Entities.DTO
         public SeatDto Seat { get; set; }
 
         public bool HasLinen { get; set; }
+
+        public DateTime CancelReservationDateTime { get; set; }
     }
 }

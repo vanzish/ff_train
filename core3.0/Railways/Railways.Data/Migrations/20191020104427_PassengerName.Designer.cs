@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Railways.Data;
@@ -9,9 +10,10 @@ using Railways.Data;
 namespace Railways.Data.Migrations
 {
     [DbContext(typeof(RailwaysContext))]
-    partial class RailwaysContextModelSnapshot : ModelSnapshot
+    [Migration("20191020104427_PassengerName")]
+    partial class PassengerName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,50 +163,6 @@ namespace Railways.Data.Migrations
                             CityTimeZone = new TimeSpan(0, 10, 0, 0, 0),
                             Name = "Владивосток"
                         });
-                });
-
-            modelBuilder.Entity("Railways.Entities.Configuration", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<TimeSpan>("CancelReservationOffset")
-                        .HasColumnType("interval");
-
-                    b.Property<string>("ConfigName")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Configuration");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CancelReservationOffset = new TimeSpan(1, 0, 0, 0, 0),
-                            ConfigName = "TicketReservation"
-                        });
-                });
-
-            modelBuilder.Entity("Railways.Entities.Reservation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<DateTime>("CancelReservationDateTime")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid>("Number")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("Railways.Entities.Route", b =>
@@ -732,17 +690,11 @@ namespace Railways.Data.Migrations
                     b.Property<bool>("HasLinen")
                         .HasColumnType("boolean");
 
-                    b.Property<bool>("IsPurchased")
-                        .HasColumnType("boolean");
-
                     b.Property<Guid>("Number")
                         .HasColumnType("uuid");
 
                     b.Property<string>("PassengerName")
                         .HasColumnType("text");
-
-                    b.Property<int?>("ReservationId")
-                        .HasColumnType("integer");
 
                     b.Property<int>("RunId")
                         .HasColumnType("integer");
@@ -755,8 +707,6 @@ namespace Railways.Data.Migrations
                     b.HasIndex("ArrivalRoutePointId");
 
                     b.HasIndex("DepartureRoutePointId");
-
-                    b.HasIndex("ReservationId");
 
                     b.HasIndex("RunId");
 
@@ -774,7 +724,6 @@ namespace Railways.Data.Migrations
                             DepartureDateTime = new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified),
                             DepartureRoutePointId = 15,
                             HasLinen = true,
-                            IsPurchased = true,
                             Number = new Guid("00000000-0000-0000-0000-000000000000"),
                             PassengerName = "Passenger First",
                             RunId = 1,
@@ -788,7 +737,6 @@ namespace Railways.Data.Migrations
                             DepartureDateTime = new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified),
                             DepartureRoutePointId = 15,
                             HasLinen = true,
-                            IsPurchased = true,
                             Number = new Guid("00000000-0000-0000-0000-000000000000"),
                             PassengerName = "Passenger Second",
                             RunId = 1,
@@ -802,7 +750,6 @@ namespace Railways.Data.Migrations
                             DepartureDateTime = new DateTime(2019, 10, 24, 0, 35, 0, 0, DateTimeKind.Unspecified),
                             DepartureRoutePointId = 15,
                             HasLinen = true,
-                            IsPurchased = true,
                             Number = new Guid("00000000-0000-0000-0000-000000000000"),
                             PassengerName = "Passenger Third",
                             RunId = 1,
@@ -908,10 +855,6 @@ namespace Railways.Data.Migrations
                         .HasForeignKey("DepartureRoutePointId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Railways.Entities.Reservation", "Reservation")
-                        .WithMany("Tickets")
-                        .HasForeignKey("ReservationId");
 
                     b.HasOne("Railways.Entities.Run", "Run")
                         .WithMany()

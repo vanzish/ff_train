@@ -7,5 +7,6 @@ namespace Railways.Data.Interfaces
     public interface ICityRepository
     {
         Task<IEnumerable<City>> GetAllCities();
+        Task<City> GetCity(int cityId);
     }
 }

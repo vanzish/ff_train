@@ -26,12 +26,14 @@ namespace Railways.Web
         {
             services.AddDbContext<RailwaysContext>();
             services.AddControllers();
-            services.Scan(scan => scan.FromAssemblyOf<ServiceAssemblyHolder>().AddClasses().AsMatchingInterface().WithScopedLifetime());
             services.AddAutoMapper(typeof(RunsProfile));
+            //services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "Railways API", Version = "v1" }); });
+
             services.AddMvc(option => option.EnableEndpointRouting = false)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                     .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                     .AddNewtonsoftJson(opt => opt.SerializerSettings.NullValueHandling = NullValueHandling.Ignore);
+            services.Scan(scan => scan.FromAssemblyOf<ServiceAssemblyHolder>().AddClasses().AsMatchingInterface().WithScopedLifetime());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +64,15 @@ namespace Railways.Web
             app.UseAuthorization();
 
             app.UseMvc();
+            //app.UseSwagger();
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseSwaggerUI(c =>
+            //    {
+            //        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            //        c.RoutePrefix = string.Empty;
+            //    });
+            //}
         }
     }
 }

@@ -18,5 +18,10 @@ namespace Railways.Data.Services
         {
             return await _cityRepository.GetAllCities();
         }
+
+        public async Task<City> GetCity(int cityId)
+        {
+            return await _cityRepository.GetCity(cityId);
+        }
     }
 }

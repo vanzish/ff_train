@@ -15,6 +15,9 @@ namespace Railways.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<Station> Stations { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Configuration> Configuration { get; set; }
+
+        public DbSet<Reservation> Reservations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,10 +29,11 @@ namespace Railways.Data
         {
             modelBuilder.Entity<Ticket>(entity =>
             {
-                entity.HasOne<RoutePoint>(x => x.ArrivalRoutePoint).WithMany(x => x.ArrivalTickets).HasForeignKey(x => x.ArrivalRoutePointId);
-                entity.HasOne<RoutePoint>(x => x.DepartureRoutePoint).WithMany(x => x.DepartureTickets).HasForeignKey(x => x.DepartureRoutePointId);
+                entity.HasOne<RoutePoint>(x => x.ArrivalRoutePoint).WithMany(x => x.ArrivalTickets)
+                      .HasForeignKey(x => x.ArrivalRoutePointId);
+                entity.HasOne<RoutePoint>(x => x.DepartureRoutePoint).WithMany(x => x.DepartureTickets)
+                      .HasForeignKey(x => x.DepartureRoutePointId);
             });
-
             modelBuilder.Seed();
         }
     }

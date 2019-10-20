@@ -2,6 +2,7 @@
 using Railways.Data.Interfaces;
 using Railways.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Railways.Data.Repositories
@@ -19,6 +20,12 @@ namespace Railways.Data.Repositories
         {
             await using (_context)
                 return await _context.Cities.Include(x => x.Stations).ToListAsync();
+        }
+
+        public async Task<City> GetCity(int cityId)
+        {
+            await using (_context)
+                return await _context.Cities.Include(x => x.Stations).FirstAsync(x => x.Id == cityId);
         }
     }
 }

@@ -239,10 +239,13 @@ namespace Railways.Data
                 Id = 1, TrainId = 1, RouteId = 1, RunTime = new DateTime(2019, 10, 24, 0, 35, 0)
             });
 
+            #region Tickets
+
             modelBuilder.Entity<Ticket>().HasData(new Ticket
                                                   {
                                                       Id = 1,
                                                       RunId = 1,
+                                                      PassengerName = "Passenger First",
                                                       ArrivalRoutePointId = 1,
                                                       DepartureRoutePointId = 15,
                                                       DepartureDateTime =
@@ -250,13 +253,14 @@ namespace Railways.Data
                                                       ArrivalDateTime = new DateTime(2019, 10, 24, 0, 35, 0) +
                                                                         new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 22 +
                                                                                      TimeSpan.TicksPerMinute * 28),
-                                                      SeatId = 1, HasLinen = true
+                                                      SeatId = 1, HasLinen = true, IsPurchased = true
                                                   },
                                                   new Ticket
                                                   {
                                                       Id = 2,
                                                       RunId = 1,
                                                       ArrivalRoutePointId = 1,
+                                                      PassengerName = "Passenger Second",
                                                       DepartureRoutePointId = 15,
                                                       DepartureDateTime =
                                                           new DateTime(2019, 10, 24, 0, 35, 0),
@@ -264,11 +268,13 @@ namespace Railways.Data
                                                                         new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 22 +
                                                                                      TimeSpan.TicksPerMinute * 28),
                                                       SeatId = 2,
-                                                      HasLinen = true
+                                                      HasLinen = true,
+                                                      IsPurchased = true
                                                   }, new Ticket
                                                   {
                                                       Id = 3,
                                                       RunId = 1,
+                                                      PassengerName = "Passenger Third",
                                                       ArrivalRoutePointId = 1,
                                                       DepartureRoutePointId = 15,
                                                       DepartureDateTime =
@@ -277,8 +283,16 @@ namespace Railways.Data
                                                                         new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 22 +
                                                                                      TimeSpan.TicksPerMinute * 28),
                                                       SeatId = 3,
-                                                      HasLinen = true
+                                                      HasLinen = true,
+                                                      IsPurchased = true
                                                   });
+
+            #endregion
+
+            modelBuilder.Entity<Configuration>().HasData(new Configuration
+            {
+                Id = 1, ConfigName = "TicketReservation", CancelReservationOffset = new TimeSpan(1, 0, 0, 0)
+            });
         }
     }
 }

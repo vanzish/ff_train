@@ -9,6 +9,8 @@ namespace Railways.Entities
 
         public Guid Number { get; set; }
 
+        public string PassengerName { get; set; }
+
         public int RunId { get; set; }
 
         public Run Run { get; set; }
@@ -30,5 +32,11 @@ namespace Railways.Entities
         public Seat Seat { get; set; }
 
         public bool HasLinen { get; set; }
+
+        public bool IsPurchased { get; set; }
+
+        public Reservation Reservation { get; set; }
+
+        public int? ReservationId { get; set; }
     }
 }
