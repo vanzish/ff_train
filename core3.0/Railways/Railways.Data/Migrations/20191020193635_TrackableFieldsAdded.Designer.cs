@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Railways.Data;
@@ -9,9 +10,10 @@ using Railways.Data;
 namespace Railways.Data.Migrations
 {
     [DbContext(typeof(RailwaysContext))]
-    partial class RailwaysContextModelSnapshot : ModelSnapshot
+    [Migration("20191020193635_TrackableFieldsAdded")]
+    partial class TrackableFieldsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

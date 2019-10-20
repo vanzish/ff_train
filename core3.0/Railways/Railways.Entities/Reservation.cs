@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Railways.Entities.Interfaces;
 
 namespace Railways.Entities
 {
-    public class Reservation
+    public class Reservation : IDateCreated, IDateUpdated
     {
         public int Id { get; set; }
 
@@ -12,5 +13,7 @@ namespace Railways.Entities
         public ICollection<Ticket> Tickets { get; set; }
 
         public DateTime CancelReservationDateTime { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime LastUpdatedAt { get; set; }
     }
 }

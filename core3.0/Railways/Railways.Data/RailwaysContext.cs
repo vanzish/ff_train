@@ -1,5 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Railways.Entities;
+using Railways.Entities.Interfaces;
 
 namespace Railways.Data
 {
@@ -35,6 +39,37 @@ namespace Railways.Data
                       .HasForeignKey(x => x.DepartureRoutePointId);
             });
             modelBuilder.Seed();
+        }
+
+        public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        {
+            OnBeforeSaving();
+            return base.SaveChanges(acceptAllChangesOnSuccess);
+        }
+
+        public override Task<int> SaveChangesAsync(
+            bool acceptAllChangesOnSuccess,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            OnBeforeSaving();
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        private void OnBeforeSaving()
+        {
+            var entries = ChangeTracker.Entries();
+            foreach (var entry in entries)
+            {
+                if (entry.Entity is IDateCreated created && entry.State == EntityState.Added)
+                {
+                    created.CreatedAt = DateTime.UtcNow;
+                }
+
+                if (entry.Entity is IDateUpdated updated && entry.State == EntityState.Modified)
+                {
+                    updated.LastUpdatedAt = DateTime.UtcNow;
+                }
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Railways.Data.Repositories
         {
             await using (_context)
             {
-                return await _context.Reservations.Include(x => x.Tickets).Where(x => x.CancelReservationDateTime < DateTime.UtcNow)
+                return await _context.Reservations.AsNoTracking().Include(x => x.Tickets).Where(x => x.CancelReservationDateTime < DateTime.UtcNow)
                                      .FirstAsync(x => string.Equals(x.Number.ToString(), reservationNumber));
             }
         }

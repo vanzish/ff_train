@@ -20,7 +20,7 @@ namespace Railways.Data.Repositories
         {
             await using (_context)
             {
-                var runs = _context.Runs.Where(x => x.Id == runId);
+                var runs = _context.Runs.AsNoTracking().Where(x => x.Id == runId);
 
                 return await runs.Distinct().Include(x => x.Train).ThenInclude(x => x.Carriages).Include($"Train.Carriages.Seats.SeatType")
                                  .Include($"Train.Carriages.Seats.Ticket").ToListAsync();

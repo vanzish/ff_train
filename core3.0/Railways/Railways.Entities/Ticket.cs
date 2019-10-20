@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using Railways.Entities.Interfaces;
 
 namespace Railways.Entities
 {
-    public class Ticket
+    public class Ticket : IDateCreated, IDateUpdated
     {
         public int Id { get; set; }
 
@@ -38,5 +39,7 @@ namespace Railways.Entities
         public Reservation Reservation { get; set; }
 
         public int? ReservationId { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime LastUpdatedAt { get; set; }
     }
 }

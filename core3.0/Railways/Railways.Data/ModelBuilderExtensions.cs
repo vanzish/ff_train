@@ -253,7 +253,8 @@ namespace Railways.Data
                                                       ArrivalDateTime = new DateTime(2019, 10, 24, 0, 35, 0) +
                                                                         new TimeSpan(TimeSpan.TicksPerDay * 6 + TimeSpan.TicksPerHour * 22 +
                                                                                      TimeSpan.TicksPerMinute * 28),
-                                                      SeatId = 1, HasLinen = true, IsPurchased = true
+                                                      SeatId = 1, HasLinen = true, IsPurchased = true,
+                                                      CreatedAt = new DateTime(2019, 10, 10)
                                                   },
                                                   new Ticket
                                                   {
@@ -269,7 +270,8 @@ namespace Railways.Data
                                                                                      TimeSpan.TicksPerMinute * 28),
                                                       SeatId = 2,
                                                       HasLinen = true,
-                                                      IsPurchased = true
+                                                      IsPurchased = true,
+                                                      CreatedAt = new DateTime(2019, 10, 10)
                                                   }, new Ticket
                                                   {
                                                       Id = 3,
@@ -284,7 +286,8 @@ namespace Railways.Data
                                                                                      TimeSpan.TicksPerMinute * 28),
                                                       SeatId = 3,
                                                       HasLinen = true,
-                                                      IsPurchased = true
+                                                      IsPurchased = true,
+                                                      CreatedAt = new DateTime(2019, 10, 10)
                                                   });
 
             #endregion

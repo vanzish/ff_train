@@ -24,8 +24,8 @@ namespace Railways.Data.Repositories
 
             await using (_context)
             {
-                var routePoints = await _context.RoutePoints.Include(x => x.Station.City).ToListAsync();
-                var run = await _context.Runs.FirstOrDefaultAsync(x => x.Id == options.RunId);
+                var routePoints = await _context.RoutePoints.AsNoTracking().Include(x => x.Station.City).ToListAsync();
+                var run = await _context.Runs.AsNoTracking().FirstOrDefaultAsync(x => x.Id == options.RunId);
                 var arrivalRoutePoint = routePoints.First(x => x.Station.CityId == options.ArrivalCityId);
                 var departureRoutePoint = routePoints.First(x => x.Station.CityId == options.DepartureCityId);
                 Reservation reservation = null;

@@ -19,13 +19,13 @@ namespace Railways.Data.Repositories
         public async Task<IEnumerable<City>> GetAllCities()
         {
             await using (_context)
-                return await _context.Cities.Include(x => x.Stations).ToListAsync();
+                return await _context.Cities.AsNoTracking().Include(x => x.Stations).ToListAsync();
         }
 
         public async Task<City> GetCity(int cityId)
         {
             await using (_context)
-                return await _context.Cities.Include(x => x.Stations).FirstAsync(x => x.Id == cityId);
+                return await _context.Cities.AsNoTracking().Include(x => x.Stations).FirstAsync(x => x.Id == cityId);
         }
     }
 }

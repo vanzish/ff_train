@@ -25,7 +25,7 @@ namespace Railways.Data.Repositories
         {
             await using (_context)
             {
-                var runs = from run in _context.Runs
+                var runs = from run in _context.Runs.AsNoTracking()
                            join route in _context.Routes on run.RouteId equals route.Id
                            join routePoint in _context.RoutePoints on route.Id equals routePoint.RouteId
                            where route.RoutePoints.Select(x => x.Station.CityId).Contains(departureCityId) &&
