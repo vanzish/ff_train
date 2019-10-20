@@ -24,9 +24,18 @@ namespace Railways.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins", builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyMethod();
+                });
+            });
             services.AddDbContext<RailwaysContext>();
             services.AddControllers();
-            services.AddAutoMapper(typeof(RunsProfile));
+            services.AddAutoMapper(typeof(RailwayProfile));
             //services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "Railways API", Version = "v1" }); });
 
             services.AddMvc(option => option.EnableEndpointRouting = false)
@@ -39,6 +48,7 @@ namespace Railways.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(builder => builder.AllowAnyOrigin());
             app.Use(async (context, next) =>
             {
                 if (context.Request.Path.Equals("/"))
