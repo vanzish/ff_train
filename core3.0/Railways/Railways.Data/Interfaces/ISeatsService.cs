@@ -6,6 +6,6 @@ namespace Railways.Data.Interfaces
 {
     public interface ISeatsService
     {
-        Task<IEnumerable<Run>> GetTrainSeats(int runId);
+        Task<Run> GetTrainSeats(int runId);
     }
 }

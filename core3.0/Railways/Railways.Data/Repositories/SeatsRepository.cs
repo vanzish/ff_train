@@ -16,14 +16,14 @@ namespace Railways.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Run>> GetTrainSeats(int runId)
+        public async Task<Run> GetTrainSeats(int runId)
         {
             await using (_context)
             {
-                var runs = _context.Runs.AsNoTracking().Where(x => x.Id == runId);
+                var run = await _context.Runs.Include(x => x.Train).ThenInclude(x => x.Carriages).Include($"Train.Carriages.Seats.SeatType")
+                                        .Include($"Train.Carriages.Seats.Ticket").AsNoTracking().FirstAsync(x => x.Id == runId);
 
-                return await runs.Distinct().Include(x => x.Train).ThenInclude(x => x.Carriages).Include($"Train.Carriages.Seats.SeatType")
-                                 .Include($"Train.Carriages.Seats.Ticket").ToListAsync();
+                return run;
             }
         }
     }

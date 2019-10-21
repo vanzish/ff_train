@@ -4,6 +4,6 @@ namespace Railways.Entities.DTO.Results
 {
     public class SeatsResult
     {
-        public IEnumerable<RunDto> Seats { get; set; }
+        public RunDto Run { get; set; }
     }
 }

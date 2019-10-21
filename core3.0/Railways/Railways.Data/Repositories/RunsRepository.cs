@@ -55,7 +55,7 @@ namespace Railways.Data.Repositories
                                   )
                             select seat;
 
-                var runList = await runs.Distinct().Include(x => x.Train).Include(x=>x.Route)
+                var runList = await runs.Distinct().Include(x => x.Train).Include(x => x.Route)
                                         .Where(x => seats.Select(s => s.Carriage.TrainId).Contains(x.TrainId)).ToListAsync();
 
                 return runList;

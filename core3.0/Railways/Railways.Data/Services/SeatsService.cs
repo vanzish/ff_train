@@ -14,7 +14,7 @@ namespace Railways.Data.Services
             _seatsRepository = seatsRepository;
         }
 
-        public async Task<IEnumerable<Run>> GetTrainSeats(int runId)
+        public async Task<Run> GetTrainSeats(int runId)
         {
             return await _seatsRepository.GetTrainSeats(runId);
         }

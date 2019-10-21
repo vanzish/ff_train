@@ -25,8 +25,8 @@ namespace Railways.Business.Business.Handlers
         {
             try
             {
-                var seats = await _seatsService.GetTrainSeats(options.RunId);
-                var result = new SeatsResult { Seats = seats.Select(x => _mapper.Map<RunDto>(x)) };
+                var run = await _seatsService.GetTrainSeats(options.RunId);
+                var result = new SeatsResult { Run = _mapper.Map<RunDto>(run) };
                 return Result.Ok(result);
             }
             catch (Exception ex)
