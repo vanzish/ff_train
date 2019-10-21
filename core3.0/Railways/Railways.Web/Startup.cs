@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Railways.Business.Business.Mappers;
 using Railways.Data;
@@ -36,12 +37,12 @@ namespace Railways.Web
             services.AddDbContext<RailwaysContext>();
             services.AddControllers();
             services.AddAutoMapper(typeof(RailwayProfile));
-            //services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info { Title = "Railways API", Version = "v1" }); });
 
             services.AddMvc(option => option.EnableEndpointRouting = false)
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                     .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                     .AddNewtonsoftJson(opt => opt.SerializerSettings.NullValueHandling = NullValueHandling.Ignore);
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Railways API", Version = "v1" }); });
             services.Scan(scan => scan.FromAssemblyOf<ServiceAssemblyHolder>().AddClasses().AsMatchingInterface().WithScopedLifetime());
         }
 
@@ -79,15 +80,14 @@ namespace Railways.Web
             app.UseAuthorization();
 
             app.UseMvc();
-            //app.UseSwagger();
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseSwaggerUI(c =>
-            //    {
-            //        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            //        c.RoutePrefix = string.Empty;
-            //    });
-            //}
+            app.UseSwagger();
+            if (env.IsDevelopment())
+            {
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                });
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Railways.Tests
             var options = new SeatsOptions() { RunId = 1 };
             var result = await InvokeApi<SeatsResult>(BuildUrl(ApiMethod), "POST", Serialize(options));
 
-            Assert.IsNotEmpty(result.Seats);
+            Assert.IsNotNull(result.Run);
         }
     }
 }
